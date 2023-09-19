@@ -5,11 +5,18 @@ class Catalogue {
   }
 
   findProductById(id) {
-    const match = this.products.find(
-      function (product) {
-        return id === product.id;
-      })
+    const match = this.products.find(function (product) {
+      return id === product.id;
+    });
     return match;
+  }
+
+  findProductsByNameLike(subString) {
+    const matches = this.products.filter(function (product) {
+      const position = product.name.search(subString);
+      return position !== -1;
+    });
+    return matches;
   }
 
   addProduct(product) {
@@ -19,6 +26,5 @@ class Catalogue {
     }
     return false;
   }
-
 }
 module.exports = Catalogue;
